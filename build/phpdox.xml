@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config" silent="false">
+
+    <project name="php-template" source="app" workdir="${basedir}/api/xml">
+
+        <collector publiconly="false" backend="parser" encoding="UTF-8" />
+
+        <generator output="${basedir}/api/docs">
+
+            <enrich base="${basedir}/logs">
+                <source type="build" />
+                <source type="git">
+                    <history enabled="true" limit="15" />
+                </source>
+                <!-- alternative checkstyler to support phpcs xml output -->
+                <!-- <source type="phpcs" /> -->
+                <source type="phploc" />
+            </enrich>
+
+            <build engine="html" enabled="true" output="html">
+                <template dir="${phpDox.home}/templates/html" />
+                <file extension="xhtml" />
+            </build>
+
+            <build engine="xml" enabled="true" output="xml" />
+
+        </generator>
+    </project>
+
+</phpdox>
