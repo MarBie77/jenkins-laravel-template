@@ -91,7 +91,7 @@ pipeline {
         }
         stage('Deployment') {
             steps {
-                sh "rsync -avz --delete --exclude-from=.deployment_exclude -e 'ssh -p 24241' . deploy@www.biermair.at:/www/homepage/"
+                sh "rsync -avz --delete --exclude-from=.deployment_exclude -e 'ssh -p 2530' . deploy@www.example.com:/www/example-project/"
             }
         }
     }
