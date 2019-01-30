@@ -1,0 +1,10 @@
+- .vscode/
+- .git/
+- node_modules/
+- tests/
+- phpunit.xml
+- build/
+- storage/logs/**/*
+- storage/framework/**/*
+- storage/app/**/*
+- docker/
