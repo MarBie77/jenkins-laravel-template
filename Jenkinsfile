@@ -79,6 +79,15 @@ pipeline {
                 checkstyle pattern: "${buildDir}logs/checkstyle.xml"
                 recordIssues enabledForFailure: true, tool: pmd(pattern: "${buildDir}logs/pmd.xml")
                 recordIssues enabledForFailure: true, tool: cpd(pattern: "${buildDir}logs/pmd-cpd.xml")
+                sh "echo '<html><head><title>PHP Dependency</title></head><body></body><img src=\"dependencies.svg\"></br><img src=\"overview-pyramid.svg\"></html>' > ${buildDir}pdepend/index.html"
+                publishHTML (target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: "${buildDir}pdepend",
+                    reportFiles: 'index.html',
+                    reportName: "PHP Dependencies"
+                ])
                 publishHTML (target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
