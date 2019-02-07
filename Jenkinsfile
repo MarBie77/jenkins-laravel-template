@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Composer') {
             steps {
-                sh 'composer install --no-suggest -o'
+                sh 'composer install --no-suggest --optimize-autoloader --no-ansi --no-interaction'
             }
         }
         stage('Yarn & Webpack') {
