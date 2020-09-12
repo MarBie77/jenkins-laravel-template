@@ -76,7 +76,7 @@ pipeline {
                     unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50], // optional, default is none
                     failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]     // optional, default is none)
                 ])
-                checkstyle pattern: "${buildDir}logs/checkstyle.xml"
+                recordIssues enabledForFailure: true, tool: checkStyle(pattern: "${buildDir}logs/checkstyle.xml")
                 recordIssues enabledForFailure: true, tool: pmdParser(pattern: "${buildDir}logs/pmd.xml")
                 recordIssues enabledForFailure: true, tool: cpd(pattern: "${buildDir}logs/pmd-cpd.xml")
                 sh "echo '<html><head><title>PHP Dependency</title></head><body></body><img src=\"dependencies.svg\"></br><img src=\"overview-pyramid.svg\"></html>' > ${buildDir}pdepend/index.html"
