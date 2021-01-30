@@ -62,8 +62,6 @@ pipeline {
                 sh "phploc --count-tests --exclude vendor/ --log-csv ${buildDir}logs/phploc.csv --log-xml ${buildDir}logs/phploc.xml app"
                 // software metrics
                 sh "pdepend --jdepend-xml=${buildDir}logs/jdepend.xml --jdepend-chart=${buildDir}pdepend/dependencies.svg --overview-pyramid=${buildDir}pdepend/overview-pyramid.svg --ignore=vendor app"
-                // php documentation generator
-                sh "phpdox -f ${buildDir}phpdox.xml || exit 0"
             }
         }
         stage('Publish Reporting') {
@@ -87,14 +85,6 @@ pipeline {
                     reportDir: "${buildDir}pdepend",
                     reportFiles: 'index.html',
                     reportName: "PHP Dependencies"
-                ])
-                publishHTML (target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: true,
-                    reportDir: "${buildDir}api/docs/html",
-                    reportFiles: 'index.xhtml',
-                    reportName: "PHPDox Documentation"
                 ])
             }
         }
