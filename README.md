@@ -15,6 +15,12 @@ add build-directory and Jenkinsfile/.deployment_exclude OR build.xml to your GIT
 
 > Do NOT forget the .gitignore file in the build-directory, otherwise you'll have all reports in your next commit.
 
+> Also do NOT forget to pass XDEBUG_MODE=coverage to the Jenkins installation, otherwise phpunit won't generate code coverage reports
+
+> You may also set environment, so CSS/Images from Code coverage report are loaded:
+  ```JAVA_OPTS=-Dhudson.model.DirectoryBrowserSupport.CSP="sandbox allow-same-origin allow-scripts; default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'"```
+
+
 ### optional steps
 
 #### Pipeline project
